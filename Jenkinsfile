@@ -29,15 +29,15 @@ node {
         case "dev":
             sh("sed -i.bak 's#gcr.io/${project}/${appName}:${appVersion}#${imageTag}#' deployment/deployments/deployment.yaml")
             sh("kubectl apply -f deployment/configmaps/staging.yaml")
-            sh("kubectl apply --namespace=${appZone}-staging -f deployment/services")
-            sh("kubectl apply --namespace=${appZone}-staging -f deployment/deployments/deployment.yaml")
+            sh("kubectl apply --namespace=staging -f deployment/services")
+            sh("kubectl apply --namespace=staging -f deployment/deployments/deployment.yaml")
             sh("kubectl apply -f deployment/ingress/staging.yaml")
             break
         case "master":
             sh("sed -i.bak 's#gcr.io/${project}/${appName}:${appVersion}#${imageTag}#' deployment/deployments/deployment.yaml")
             sh("kubectl apply -f deployment/configmaps/production.yaml")
-            sh("kubectl apply --namespace=${appZone}-prod -f deployment/services")
-            sh("kubectl apply --namespace=${appZone}-prod -f deployment/deployments/deployment.yaml")
+            sh("kubectl apply --namespace=production -f deployment/services")
+            sh("kubectl apply --namespace=production -f deployment/deployments/deployment.yaml")
             sh("kubectl apply -f deployment/ingress/production.yaml")
             break
       }

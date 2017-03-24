@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: simple-api
+  namespace: production
+data:
+  node.env: production
+  node.port: "1500"
