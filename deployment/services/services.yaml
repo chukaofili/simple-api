@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: simple-api
+  labels:
+    app: simple
+    tier: backend
+    type: api
+spec:
+  ports:
+  - port: 1500
+    targetPort: 1500
+  selector:
+    app: simple
+    tier: backend
+    type: api
+  # type: LoadBalancer

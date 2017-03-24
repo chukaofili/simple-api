@@ -1,0 +1,50 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: simple-api
+spec:
+  replicas: 2
+  revisionHistoryLimit: 2
+  template:
+    metadata:
+      labels:
+        app: simple
+        tier: backend
+        type: api
+    spec:
+      restartPolicy: Always
+      containers:
+      - name: simple-api
+        image: gcr.io/simple-app/simple-api:1.0.0
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 1500
+            scheme: HTTP
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 1500
+            scheme: HTTP
+          initialDelaySeconds: 30
+          timeoutSeconds: 5
+        env:
+        - name: GET_HOSTS_FROM
+          value: dns
+        - name: NODE_ENV
+          valueFrom:
+            configMapKeyRef:
+              name: simple-api
+              key: node.env
+        - name: PORT
+          valueFrom:
+            configMapKeyRef:
+              name: simple-api
+              key: node.port
+        - name: MONGO_URL
+          valueFrom:
+            secretKeyRef:
+              name: simple-api
+              key: mongo.url
+        ports:
+          - containerPort: 1500
