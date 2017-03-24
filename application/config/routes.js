@@ -27,5 +27,25 @@ module.exports.routes = {
     'GET /health': {
         controller: 'HealthController',
         action: 'healthCheck'
-    }
+    },
+    'POST /item': {
+        controller: 'ItemController',
+        action: 'create'
+    },
+    'GET /item': {
+        controller: 'ItemController',
+        action: 'list'
+    },
+    'GET /item/:id': {
+        controller: 'ItemController',
+        action: 'read'
+    },
+    'PUT /item/:id': {
+        controller: 'ItemController',
+        action: 'update'
+    },
+    'DELETE /item/:id': {
+        controller: 'ItemController',
+        action: 'delete'
+    },
 };
