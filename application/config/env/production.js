@@ -15,29 +15,10 @@ module.exports = {
     connections: {
         mongodb: {
             adapter: 'sails-mongo',
-            url: process.env.MONGO_URL,
-            mongos: {
-                ssl: true,
-                sslValidate: false
-            }
+            url: process.env.MONGO_URL
         },
     },
     models: {
         connection: 'mongodb',
-    },
-    session: {
-        adapter: 'redis',
-        host: process.env.REDIS_HOST,
-        port: process.env.REDIS_PORT,
-        db: 4,
-        pass: process.env.REDIS_PASSWORD,
-        prefix: 'simple_prod_sess:'
-    },
-    sockets: {
-        adapter: 'socket.io-redis',
-        host: process.env.REDIS_HOST,
-        port: process.env.REDIS_PORT,
-        db: 5,
-        pass: process.env.REDIS_PASSWORD,
     }
 };
