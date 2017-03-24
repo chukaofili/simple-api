@@ -1,0 +1,9 @@
+.git
+.gitignore
+.idea
+.DS_Store
+.editorconfig
+application/.tmp
+application/node_modules
+application/coverage
+deployment/*
