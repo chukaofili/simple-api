@@ -1,0 +1,5 @@
+.idea/
+# Project specific
+deployment/secrets/*.yaml
+application/node_modules
+deployment/deployments/dev
