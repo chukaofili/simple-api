@@ -43,7 +43,7 @@ npm test
 * Setup secrets found in deployment/deployments/deployment.yaml
 * Run in the follwing order:
 ```shell
-kubectl create ns cr-dev
+kubectl create ns develoment
 sh ./deployment/deploy.sh dev
 ```
 
