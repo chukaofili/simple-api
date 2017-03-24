@@ -24,6 +24,7 @@
   },
   "scripts": {
     "debug": "node debug app.js",
+    "test": "NODE_ENV=test ./node_modules/.bin/mocha --recursive test",
     "start": "node app.js"
   },
   "main": "app.js",
@@ -32,5 +33,9 @@
     "url": "git://github.com/chukaofili/simple-api.git"
   },
   "author": "Chuka Ofili",
-  "license": "GPL"
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "mocha": "^3.2.0",
+    "supertest": "^3.0.0"
+  }
 }
