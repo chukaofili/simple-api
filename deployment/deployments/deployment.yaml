@@ -15,7 +15,7 @@ spec:
       restartPolicy: Always
       containers:
       - name: simple-api
-        image: gcr.io/simple-app-pro/simple-api:1.0.0
+        image: gcr.io/field-insight/simple-api:1.0.0
         readinessProbe:
           httpGet:
             path: /health
