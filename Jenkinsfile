@@ -2,9 +2,8 @@ node {
   try {
     notifyBuild('STARTED')
 
-    def project = 'PROJECT_NAME'
-    def appZone = 'APP'
-    def appName = 'APP_NAME'
+    def project = 'field-insight'
+    def appName = 'simple-api'
     def appVersion = '1.0.0'
     def imageTag = "gcr.io/${project}/${appName}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
 
@@ -33,13 +32,13 @@ node {
             sh("kubectl apply --namespace=staging -f deployment/deployments/deployment.yaml")
             sh("kubectl apply -f deployment/ingress/staging.yaml")
             break
-        case "master":
-            sh("sed -i.bak 's#gcr.io/${project}/${appName}:${appVersion}#${imageTag}#' deployment/deployments/deployment.yaml")
-            sh("kubectl apply -f deployment/configmaps/production.yaml")
-            sh("kubectl apply --namespace=production -f deployment/services")
-            sh("kubectl apply --namespace=production -f deployment/deployments/deployment.yaml")
-            sh("kubectl apply -f deployment/ingress/production.yaml")
-            break
+        // case "master":
+        //     sh("sed -i.bak 's#gcr.io/${project}/${appName}:${appVersion}#${imageTag}#' deployment/deployments/deployment.yaml")
+        //     sh("kubectl apply -f deployment/configmaps/production.yaml")
+        //     sh("kubectl apply --namespace=production -f deployment/services")
+        //     sh("kubectl apply --namespace=production -f deployment/deployments/deployment.yaml")
+        //     sh("kubectl apply -f deployment/ingress/production.yaml")
+            // break
       }
     }
   } catch (e) {
