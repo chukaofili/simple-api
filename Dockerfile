@@ -1,18 +1,12 @@
-FROM node:6.10.0-alpine
+FROM node:7.10.1-alpine
 MAINTAINER Chuka Ofili <chuka.ofili@deliveryscience.co>
 
-RUN apk add -U tzdata \
-	&& cp /usr/share/zoneinfo/Africa/Lagos /etc/localtime \
-	&& echo "Africa/Lagos" > /etc/timezone \
-	&& apk del tzdata \
-	&& mkdir -p /www
- 
 WORKDIR /www
 
-ADD application/package.json /www/package.json
-RUN npm install -quiet \
-	&& npm cache clear; 
+ADD application/package.json application/yarn.lock /www/
+RUN yarn install \
+	&& yarn cache clean;
 
 ADD application /www
 
-CMD ["npm", "start"]
+CMD ["yarn", "start"]
