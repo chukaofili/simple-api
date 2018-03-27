@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: simple-api
 spec:
-  replicas: 2
+  replicas: 3
   revisionHistoryLimit: 2
   template:
     metadata:
@@ -15,7 +15,7 @@ spec:
       restartPolicy: Always
       containers:
       - name: simple-api
-        image: gcr.io/jenkins-cluster-ch/simple-api:1.0.0
+        image: gcr.io/field-insight/simple-api:1.0.2
         readinessProbe:
           httpGet:
             path: /health
@@ -41,10 +41,5 @@ spec:
             configMapKeyRef:
               name: simple-api
               key: node.port
-        - name: MONGO_URL
-          valueFrom:
-            secretKeyRef:
-              name: simple-api
-              key: mongo.url
         ports:
           - containerPort: 1500

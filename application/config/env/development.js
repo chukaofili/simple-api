@@ -13,12 +13,11 @@
 module.exports = {
 	port: process.env.PORT || 1500,
     connections: {
-        mongodb: {
-            adapter: 'sails-mongo',
-            url: process.env.MONGO_URL
+        localDiskDb: {
+            adapter: 'sails-disk'
         },
     },
     models: {
-        connection: 'mongodb',
-    }
+        connection: 'localDiskDb',
+    },
 };
